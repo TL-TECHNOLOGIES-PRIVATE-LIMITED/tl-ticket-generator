@@ -19,7 +19,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const PhoneAuth = () => {
+const PhoneAuth = ( {onVerificationSuccess ,isPhoneVerified}) => {
   const [error, setError] = useState("");
   const [otp, setOtp] = useState("");
   const [showOtpInput, setShowOtpInput] = useState(false);
@@ -74,8 +74,10 @@ const PhoneAuth = () => {
       const credential = PhoneAuthProvider.credential(confirmationResult.verificationId, otp);
       await signInWithCredential(auth, credential);
       setError("");
-      setVerified(true);
-      alert("OTP Verified Successfully");
+console.log(credential)
+      onVerificationSuccess(true);
+
+     alert("OTP Verified Successfully");
     } catch (err) {
       setError("Invalid OTP. Try again.");
     }
@@ -155,7 +157,7 @@ const PhoneAuth = () => {
           </motion.div>
         )}
 
-        <div id="recaptcha-container" ref={recaptchaContainerRef} className="mt-6"></div>
+<div id="recaptcha-container" ref={recaptchaContainerRef} className="mt-6"></div>
       </motion.div>
     </div>
   );
