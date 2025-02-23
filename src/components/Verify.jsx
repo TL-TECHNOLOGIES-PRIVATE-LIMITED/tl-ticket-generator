@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import PhoneInput from "react-phone-input-2";
@@ -157,7 +158,7 @@ console.log(credential)
           </motion.div>
         )}
 
-<div id="recaptcha-container" ref={recaptchaContainerRef} className="mt-6"></div>
+{!showOtpInput&&(<div id="recaptcha-container" ref={recaptchaContainerRef} ></div>)}
       </motion.div>
     </div>
   );

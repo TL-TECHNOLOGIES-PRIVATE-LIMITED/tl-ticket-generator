@@ -19,10 +19,15 @@ const UserDetailsForm = ({ phoneNumber, onSubmitSuccess }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmitSuccess(formData);
+  
+    const completeFormData = {
+      ...formData,
+      phoneNumber, // Include the phone number if needed
+    };
+  console.log(completeFormData)
     onSubmitSuccess(completeFormData);
-
   };
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;

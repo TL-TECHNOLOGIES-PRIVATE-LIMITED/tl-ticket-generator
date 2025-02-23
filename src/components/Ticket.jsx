@@ -116,15 +116,10 @@ import React, { useRef } from "react";
 import html2canvas from "html2canvas";
 import { User, Phone, Calendar as GenderMale, Hash, Armchair, Download, Share2, MapPin, Calendar, Clock, Ticket as TicketIcon } from 'lucide-react';
 
-function Ticket() {
+function Ticket({userDetails,userPhone}) {
   const ticketRef = useRef(null);
-  const userDetails = {
-    name: "Sarah Johnson",
-    sex: "Female",
-    age: "28",
-    seatCategory: "VIP"
-  };
-  const phoneNumber = "+1 (555) 123-4567";
+  console.log(userDetails)
+ 
 
   const captureTicket = () => {
     if (ticketRef.current) {
@@ -142,7 +137,7 @@ function Ticket() {
     const message = encodeURIComponent(
       `🎟️ *Grand Opening Celebration*\n\n` +
       `👤 *Name:* ${userDetails.name}\n` +
-      `📱 *Phone:* ${phoneNumber}\n` +
+      `📱 *Phone:* ${userPhone}\n` +
       `👥 *Gender:* ${userDetails.sex}\n` +
       `🔢 *Age:* ${userDetails.age}\n` +
       `🪑 *Seat Category:* ${userDetails.seatCategory}\n\n` +
@@ -159,7 +154,7 @@ function Ticket() {
       {/* Ticket Container */}
       <div
         ref={ticketRef}
-        className="relative w-[600px] bg-white rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-300"
+        className="relative w-[100%] bg-white rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-300"
       >
         {/* Header Section with Background Image */}
         <div 
@@ -213,7 +208,7 @@ function Ticket() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Phone</p>
-                  <p className="font-semibold">{phoneNumber}</p>
+                  <p className="font-semibold">{userPhone}</p>
                 </div>
               </div>
 
