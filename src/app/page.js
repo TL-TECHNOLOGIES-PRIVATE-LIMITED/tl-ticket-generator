@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import logo from '../../public/logo.avif'
+// import logo from '../../public/logo.avif'
 import FormComponent from "@/components/FormComponent";
 
 export default function Home() {
@@ -28,7 +28,7 @@ export default function Home() {
               style={{ backgroundImage: "url('https://mir-s3-cdn-cf.behance.net/projects/max_808/fbdcd2130720967.Y3JvcCwyMDQ1LDE2MDAsMjI3LDA.jpg')" }}>
               <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
               {/* Logo */}
-              <Image src={logo} alt="logo" className="m-2 h-10 w-auto rounded-lg absolute" />
+              {/* <Image src={logo} alt="logo" className="m-2 h-10 w-auto rounded-lg absolute" /> */}
               
               {/* Breaking News Marquee */}
               <div className="absolute bottom-4 px-2 w-full  text-stone-100 py-2 overflow-hidden">

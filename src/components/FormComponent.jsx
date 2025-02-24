@@ -15,26 +15,8 @@ const FormComponent = () => {
   const [userDetails, setUserDetails] = useState(null);
   const [showTicket, setShowTicket] = useState(false);
   const [step, setStep] = useState(1);
-  const [eventTime, setEventTime] = useState(new Date("2025-03-20T18:00:00").getTime());
-  const [countdown, setCountdown] = useState("");
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const timeLeft = eventTime - now;
-      if (timeLeft <= 0) {
-        clearInterval(interval);
-        setCountdown("Event Started!");
-      } else {
-        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        setCountdown(`${days}d ${hours}h ${minutes}m`);
-      }
-    }, 1000);
 
-    return () => clearInterval(interval);
-  }, [eventTime]);
 
   const handleVerificationSuccess = (phoneNumber) => {
     console.log("Phone Verified:", phoneNumber);
@@ -46,6 +28,7 @@ const FormComponent = () => {
 
   const handleFormSubmit = (formData) => {
     setUserDetails(formData);
+    console.log(formData)
     setShowTicket(true);
     setStep(3);
   };
@@ -127,7 +110,7 @@ const FormComponent = () => {
                 <BsCalendarEventFill className="w-4 h-4" />
                 Event Countdown
               </h3>
-              <div className="inline-flex items-center gap-2 bg-pink-50 rounded-full px-4 py-1.5">
+              {/* <div className="inline-flex items-center gap-2 bg-pink-50 rounded-full px-4 py-1.5">
                 {countdown.split(' ').map((unit, index) => (
                   <div key={index} className="flex items-center">
                     <span className="text-lg font-bold text-pink-500">{unit.split('')[0]}</span>
@@ -137,7 +120,7 @@ const FormComponent = () => {
                     )}
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
 
             {/* Event Location */}

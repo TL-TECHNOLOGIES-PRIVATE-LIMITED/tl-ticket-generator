@@ -30,9 +30,15 @@ const PhoneAuth = ( {onVerificationSuccess ,isPhoneVerified}) => {
   const recaptchaContainerRef = useRef(null);
 
   useEffect(() => {
-    window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
-      size: "visible",
-    });
+    if (typeof window !== "undefined" && !window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier(auth, "recaptcha-container", {
+        size: "visible",
+      });
+
+      window.recaptchaVerifier.render().catch((error) => {
+        console.error("ReCAPTCHA Render Error:", error);
+      });
+    }
   }, []);
 
   const { handleChange, handleSubmit, values } = useFormik({
@@ -159,6 +165,7 @@ console.log(credential)
         )}
 
 {!showOtpInput&&(<div id="recaptcha-container" ref={recaptchaContainerRef} ></div>)}
+
       </motion.div>
     </div>
   );

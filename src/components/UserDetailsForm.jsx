@@ -14,7 +14,8 @@ const UserDetailsForm = ({ phoneNumber, onSubmitSuccess }) => {
     age: '',
     location: '',
     preferredDate: '',
-    seatCategory: ''
+    seatCategory: '',
+    userPhone:phoneNumber
   });
 
   const handleSubmit = (e) => {

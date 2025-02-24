@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 // import React, { useRef } from "react";
 // import html2canvas from "html2canvas";
 // import { FaUser, FaPhone, FaVenusMars, FaHashtag, FaChair, FaDownload, FaWhatsapp } from "react-icons/fa";
@@ -116,10 +116,15 @@ import React, { useRef } from "react";
 import html2canvas from "html2canvas";
 import { User, Phone, Calendar as GenderMale, Hash, Armchair, Download, Share2, MapPin, Calendar, Clock, Ticket as TicketIcon } from 'lucide-react';
 
-function Ticket({userDetails,userPhone}) {
+function Ticket() {
   const ticketRef = useRef(null);
-  console.log(userDetails)
- 
+  const userDetails = {
+    name: "Sarah Johnson",
+    sex: "Female",
+    age: "28",
+    seatCategory: "VIP"
+  };
+  const phoneNumber = "+1 (555) 123-4567";
 
   const captureTicket = () => {
     if (ticketRef.current) {
@@ -137,7 +142,7 @@ function Ticket({userDetails,userPhone}) {
     const message = encodeURIComponent(
       `🎟️ *Grand Opening Celebration*\n\n` +
       `👤 *Name:* ${userDetails.name}\n` +
-      `📱 *Phone:* ${userPhone}\n` +
+      `📱 *Phone:* ${phoneNumber}\n` +
       `👥 *Gender:* ${userDetails.sex}\n` +
       `🔢 *Age:* ${userDetails.age}\n` +
       `🪑 *Seat Category:* ${userDetails.seatCategory}\n\n` +
@@ -147,148 +152,141 @@ function Ticket({userDetails,userPhone}) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-500 via-pink-400 to-pink-300 flex flex-col items-center justify-center p-6">
-      {/* Demo Preview */}
-   
-
+    <div className="min-h-fit bg-gradient-to-br   flex flex-col justify-center items-center ">
       {/* Ticket Container */}
       <div
         ref={ticketRef}
-        className="relative w-[100%] bg-white rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-300"
+        className="w-[400px] bg-white rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-300"
       >
-        {/* Header Section with Background Image */}
-        <div 
-          className="relative h-48 bg-cover bg-center p-6 text-white overflow-hidden"
-          style={{
-            backgroundImage: 'url("https://images.unsplash.com/photo-1606743776248-a4e5ea3665c8?q=80&w=1200")',
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-pink-500/90 to-pink-400/90"></div>
-          <div className="relative z-10">
-            <div className="flex items-center gap-2 mb-2">
-              <TicketIcon className="w-6 h-6" />
-              <span className="text-sm font-medium uppercase tracking-wider">Exclusive Pass</span>
+        {/* Header Section */}
+        <div className="relative h-40 bg-cover bg-center overflow-hidden">
+          <img 
+            src="https://images.unsplash.com/photo-1606743776248-a4e5ea3665c8?q=80&w=1200" 
+            alt="Event Background"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-pink-900/90 to-pink-800/90 backdrop-blur-sm"></div>
+          <div className="absolute inset-0 p-6 flex flex-col justify-between">
+            <div className="flex items-center gap-2">
+              <div className="bg-white/10 backdrop-blur-md rounded-full px-3 py-1 flex items-center gap-1.5">
+                <TicketIcon className="w-3.5 h-3.5 text-white" />
+                <span className="text-xs font-medium text-white uppercase tracking-wider">Premium Pass</span>
+              </div>
             </div>
-            <h1 className="text-3xl font-bold mb-2">Grand Opening Celebration</h1>
-            <div className="flex gap-6 text-sm">
-              <div className="flex items-center gap-1">
-                <Calendar className="w-4 h-4" />
-                <span>March 25, 2024</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <Clock className="w-4 h-4" />
-                <span>6:00 PM</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <MapPin className="w-4 h-4" />
-                <span>Main Showroom</span>
+            <div>
+              <h1 className="text-2xl font-bold text-white mb-2">Grand Opening Celebration</h1>
+              <div className="flex gap-4 text-white/90">
+                <div className="flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5" />
+                  <span className="text-xs">March 25, 2024</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5" />
+                  <span className="text-xs">6:00 PM</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5" />
+                  <span className="text-xs">Main Showroom</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Ticket Content */}
+        {/* Ticket Details */}
         <div className="p-6">
-          <div className="grid grid-cols-2 gap-8">
-            {/* Left Column - User Details */}
+          <div className="grid grid-cols-2 gap-4">
+            {/* Left Column */}
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="bg-pink-50 p-2 rounded-lg">
-                  <User className="w-5 h-5 text-pink-500" />
+                  <User className="w-4 h-4 text-pink-500" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Name</p>
-                  <p className="font-semibold">{userDetails.name}</p>
+                  <p className="text-xs text-gray-500 mb-0.5">Name</p>
+                  <p className="text-sm font-semibold text-gray-900">{userDetails.name}</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <div className="bg-pink-50 p-2 rounded-lg">
-                  <Phone className="w-5 h-5 text-pink-500" />
+                  <Phone className="w-4 h-4 text-pink-500" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Phone</p>
-                  <p className="font-semibold">{userPhone}</p>
+                  <p className="text-xs text-gray-500 mb-0.5">Phone</p>
+                  <p className="text-sm font-semibold text-gray-900">{phoneNumber}</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <div className="bg-pink-50 p-2 rounded-lg">
-                  <GenderMale className="w-5 h-5 text-pink-500" />
+                  <GenderMale className="w-4 h-4 text-pink-500" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Gender</p>
-                  <p className="font-semibold">{userDetails.sex}</p>
+                  <p className="text-xs text-gray-500 mb-0.5">Gender</p>
+                  <p className="text-sm font-semibold text-gray-900">{userDetails.sex}</p>
                 </div>
               </div>
             </div>
 
-            {/* Right Column - Additional Details */}
+            {/* Right Column */}
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <div className="bg-pink-50 p-2 rounded-lg">
-                  <Hash className="w-5 h-5 text-pink-500" />
+                  <Hash className="w-4 h-4 text-pink-500" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Age</p>
-                  <p className="font-semibold">{userDetails.age}</p>
+                  <p className="text-xs text-gray-500 mb-0.5">Age</p>
+                  <p className="text-sm font-semibold text-gray-900">{userDetails.age}</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <div className="bg-pink-50 p-2 rounded-lg">
-                  <Armchair className="w-5 h-5 text-pink-500" />
+                  <Armchair className="w-4 h-4 text-pink-500" />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Seat Category</p>
-                  <p className="font-semibold">{userDetails.seatCategory}</p>
+                  <p className="text-xs text-gray-500 mb-0.5">Seat Category</p>
+                  <p className="text-sm font-semibold text-gray-900">{userDetails.seatCategory}</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Event Image and Description */}
-          <div className="mt-6 relative rounded-xl overflow-hidden">
-            <div className="h-40 relative">
-              <img 
-                src="https://images.unsplash.com/photo-1612423284934-2850a4ea6b0f?q=80&w=1200" 
-                alt="Luxury Textiles"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-                <p className="text-lg font-semibold mb-1">Exclusive Preview</p>
-                <p className="text-sm opacity-90">
-                  Be among the first to experience our curated collection of premium textiles and traditional wear
-                </p>
-              </div>
+          {/* Event Description */}
+          <div className="mt-6 bg-gradient-to-r from-pink-500 to-pink-400 rounded-xl overflow-hidden">
+            <div className="p-4 text-white">
+              <h3 className="text-sm font-semibold mb-1">Exclusive Preview</h3>
+              <p className="text-xs text-white/90">
+                Be among the first to experience our curated collection of premium textiles and traditional wear.
+              </p>
             </div>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="bg-pink-50 p-4 border-t border-pink-100">
-          <p className="text-center text-sm text-pink-500">
+        <div className="bg-pink-50 p-3 border-t border-pink-100">
+          <p className="text-center text-xs text-pink-500">
             #GrandOpening2024 • www.example.com
           </p>
         </div>
       </div>
 
       {/* Action Buttons */}
-      <div className="mt-8 flex gap-4">
+      <div className="mt-3 flex gap-3">
         <button
           onClick={captureTicket}
-          className="flex items-center gap-2 bg-white text-pink-500 px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition duration-300 font-medium"
-        >
-          <Download className="w-5 h-5" />
+          className="flex items-center gap-2 bg-pink-500 border border-pink-700 backdrop-blur-md text-white px-5 py-2.5 rounded-lg hover:bg-pink-600 transition duration-300 text-sm font-medium"
+          >
+          <Download className="w-4 h-4" />
           Download Ticket
         </button>
 
         <button
           onClick={shareOnWhatsApp}
-          className="flex items-center gap-2 bg-pink-500 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition duration-300 font-medium"
+          className="flex items-center gap-2 bg-white text-pink-500 px-5 py-2.5 rounded-lg shadow-lg hover:shadow-xl transition duration-300 text-sm font-medium"
         >
-          <Share2 className="w-5 h-5" />
+          <Share2 className="w-4 h-4" />
           Share Ticket
         </button>
       </div>
